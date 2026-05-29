@@ -1,4 +1,4 @@
-// Pizzaria 1.3.1
+// Pizzaria 1.4.0
 
 // Grupo 04:
 // Cesar Henrique;
@@ -90,16 +90,26 @@ int main()
 		// Recebendo e validando os dados //
 		////////////////////////////////////
 		
-		// Receber o número da mesa
-		gotoxy(31, 4);
-		fflush(stdin);
-		scanf("%i", &numMesa);
+		do {
+			// Receber o número da mesa
+			gotoxy(31, 4);
+			puts("   ");
+			gotoxy(31, 4);
+			fflush(stdin);
+			scanf("%i", &numMesa);
+			
+			// Mesas numeradas de 1 a 10
+			gotoxy(8, 23);
+			if (numMesa < 0 || numMesa > 10)
+				printf("Número da Mesa deve estar entre 1 e 10, inclusive.");
+			else
+				clreol(8, 23);
+		} while (numMesa < 0 || numMesa > 10);
 		
 		// Validação da mesa
+		// Sair do programa se informado mesa 0
 		if (numMesa == 0) {
-			for (int lin = 6; lin <= 12; ++lin)
-				clreol(20, lin);
-			return 0;
+			break;
 		}
 		
 		// Receber a quantidade de chopps
@@ -128,17 +138,17 @@ int main()
 			// Validação de pizzas e coberturas
 			// Não pediu pizzas, porém pediu coberturas
 			if (qtdPizza == 0 && qtdCobertura >= 1) {
-				clreol(2, 18);
-				gotoxy(2, 18);
+				clreol(8, 23);
+				gotoxy(8, 23);
 				printf("Erro: Informe a quantidade de Pizzas");
 			// Não pediu coberturas, porém pediu pizzas
 			} else if (qtdCobertura == 0 && qtdPizza >= 1) {
-				clreol(2, 18);
-				gotoxy(2, 18);
+				clreol(8, 23);
+				gotoxy(8, 23);
 				printf("Erro: Informe a quantidade de Cobertura");
 			// Validação sucesso
 			} else {
-				clreol(2, 18);
+				clreol(8, 23);
 				validPizzaCobertura = true;
 			}
 		} while (!validPizzaCobertura);
@@ -161,11 +171,11 @@ int main()
 			scanf("%i", &qtdPessoa);
 			
 			// Validar a quantidade de pessoas
-			gotoxy(2, 18);
+			gotoxy(8, 23);
 			if (qtdPessoa == 0)
 				printf("Erro: Obrigatório informar o número de Pessoas na mesa");
 			else
-				clreol(2, 18);
+				clreol(8, 23);
 		} while (qtdPessoa == 0);
 		
 		
@@ -197,8 +207,8 @@ int main()
 	 	
 	 	
 	 	
-	 	// Exibindo a tela final //
-	 	///////////////////////////
+	 	// Exibindo a tela de saida 1 //
+	 	////////////////////////////////
 	 	
 	 	system("cls");
 	 	
@@ -231,8 +241,8 @@ int main()
 		
 		
 		
-		// Saída de dados //
-		////////////////////
+		// Saída de dados 1 //
+		//////////////////////
 		
 		gotoxy(51, 4);
 		printf("%i", numMesa);
@@ -262,7 +272,22 @@ int main()
 		
 		system("pause");
 	
-	} while (numMesa != 0); // Se informar 0 na mesa, encerra o programa
+	} while (numMesa != 0); // Se informar 0 na mesa, exibe a tela de saida 2
+	
+	// Exibindo a tela de saída 2 //
+	////////////////////////////////
+	
+	system("cls");
+	 	
+	gotoxy(17, 2);
+	printf(" <<  Pizzaria Five nights at Bianchi  >>");
+	
+	// ...
+	
+	// Saída de dados 2 //
+	//////////////////////
+	
+	// ...
 	
 	return 0;
 }
