@@ -1,3 +1,6 @@
+
+// Nota: 8,5
+
 // Pizzaria 1.3.0
 
 // Grupo 04:
@@ -110,6 +113,9 @@ int main()
 			
 			// Validar a quantidade de pizzas
 			gotoxy(2, 18);
+			
+// Aten  o! o enunciado pede para "n o pediu pizzas" por m "pediu cobertura" = erro			
+			
 			if (qtdPizza == 0)
 				printf("Erro: Informe a quantidade de Pizzas");
 			else
@@ -125,6 +131,9 @@ int main()
 			
 			// Validar a quantidade de cobertura
 			gotoxy(2, 18);
+		
+// Aten  o! o enunciado pede para "n o pediu coberturas" por m "pediu pizzas" = erro				
+			
 			if (qtdCobertura == 0)
 				printf("Erro: Informe a quantidade de Cobertura");
 			else
