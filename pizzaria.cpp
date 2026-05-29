@@ -1,4 +1,4 @@
-// Pizzaria 1.1.0
+// Pizzaria 1.2.0
 
 // Grupo 04:
 // Cesar Henrique;
@@ -26,18 +26,19 @@ int main()
 	
 	// Valores de cada produto ou serviço
 	float
-		valorChopp         = 15.00, // R$
-		valorPizza         = 55.00, // R$
-		valorCobertura     = 10.00, // R$
-		valorRefri         = 10.00, // R$
-		valorAgua          =  8.00, // R$
-		porcentagemGorjeta = 10.00; // %%
+		valorChopp          = 15.00, // R$
+		valorPizza          = 55.00, // R$
+		valorCobertura      = 10.00, // R$
+		valorRefri          =  8.00, // R$
+		valorAgua           =  6.00, // R$
+		porcentagemGorjeta  = 10.00, // %%
+		porcentagemDesconto =     0; // %%
 	
 	// Quantidade de consumo e de pessoas
 	int qtdChopp, qtdPizza, qtdCobertura, qtdRefri, qtdAgua, qtdPessoa;
 	
 	// Valores finais após os calculos
-	float valorTotal, valorGorjeta, valorPagar, valorPessoa;
+	float valorConsumo, valorGorjeta, valorConta, valorPessoa, valorDesconto, valorPagar;
 	
 	// Exibindo a tela inicial //
 	/////////////////////////////
@@ -64,56 +65,113 @@ int main()
 	////////////////////////
 	
 	gotoxy(36, 6);
-	fflush(stdin); scanf("%i", &qtdChopp);
-	gotoxy(36, 7);
-	fflush(stdin); scanf("%i", &qtdPizza);
-	gotoxy(36, 8);
-	fflush(stdin); scanf("%i", &qtdCobertura);
-	gotoxy(36, 9);
-	fflush(stdin); scanf("%i", &qtdRefri);
-	gotoxy(36, 10);
-	fflush(stdin); scanf("%i", &qtdAgua);
-	gotoxy(37, 12);
-	fflush(stdin); scanf("%i", &qtdPessoa);
-	printf("\n");
+	fflush(stdin);
+	scanf("%i", &qtdChopp);
 	
-	system("pause");
+	gotoxy(36, 7);
+	fflush(stdin);
+	scanf("%i", &qtdPizza);
+	
+	gotoxy(36, 8);
+	fflush(stdin);
+	scanf("%i", &qtdCobertura);
+	
+	gotoxy(36, 9);
+	fflush(stdin);
+	scanf("%i", &qtdRefri);
+	
+	gotoxy(36, 10);
+	fflush(stdin);
+	scanf("%i", &qtdAgua);
+	
+	gotoxy(37, 12);
+	fflush(stdin);
+	scanf("%i", &qtdPessoa);
+	
+	printf("\n");
 	
  	// Cálculos //
  	//////////////
  	
- 	valorTotal =
+ 	valorConsumo =
 		(qtdChopp * valorChopp) +
 	 	(qtdPizza * valorPizza) +
 	 	(qtdRefri * valorRefri) +
 	 	(qtdAgua * valorAgua)  +
 	 	(qtdCobertura * valorCobertura);
  	
- 	valorGorjeta = valorTotal * porcentagemGorjeta / 100;
- 	valorPagar = valorTotal + valorGorjeta;
- 	valorPessoa = valorPagar / qtdPessoa;
+ 	valorGorjeta = valorConsumo * porcentagemGorjeta / 100;
+ 	valorConta = valorConsumo + valorGorjeta;
+ 	
+ 	if (valorConta <= 400) {
+ 		porcentagemDesconto = 5.2;
+	} else if (valorConta <= 700) {
+		porcentagemDesconto = 8;
+	} else {
+		porcentagemDesconto = 10;
+	}
+	
+	valorDesconto = valorConta * porcentagemDesconto / 100;
+	valorPagar = valorConta - valorDesconto;
+	valorPessoa = valorPagar / qtdPessoa;
  	
  	// Exibindo a tela final //
  	///////////////////////////
  	
  	system("cls");
+ 	
 	gotoxy(18, 2);
 	printf(" <<  Pizzaria Five nights at Bianch  >> ");
+	
 	gotoxy(19, 4);
 	printf("<<   Fechamento da Conta da Mesa    >>");
-	gotoxy(19, 6);
-	printf("Valor Total do Consumo....: R$ %.2f", valorTotal);
-	gotoxy(19, 7);
-	printf("%% da Gorjeta do Garcom....: %.2f %%", porcentagemGorjeta);
-	gotoxy(19, 8);
-	printf("Valor da Gorjeta..........: R$ %.2f", valorGorjeta);
-	gotoxy(19, 10);
-	printf("Valor Total a Pagar.......: R$ %.2f", valorPagar);
-	gotoxy(19, 12);
-	printf("Quantidade Pessoas na mesa: %i", qtdPessoa);
-	gotoxy(19, 13);
-	printf("Valor a Pagar por pessoa..: R$ %.2f", valorPessoa);
-	printf("\n\n");
 	
-	system("pause");
+	gotoxy(19, 6);
+	printf("Valor Total do Consumo....:");
+	gotoxy(19, 7);
+	printf("%% da Gorjeta do Garcom....:");
+	gotoxy(19, 8);
+	printf("Valor da Gorjeta..........:");
+	gotoxy(19, 9);
+	printf("Valor Total da conta......:");
+	gotoxy(19, 10);
+	printf("%% do desconto.............:");
+	gotoxy(19, 11);
+	printf("Valor do Desconto.........:");
+	
+	gotoxy(19, 13);
+	printf("Valor Total a Pagar.......:");
+	
+	gotoxy(19, 15);
+	printf("Quantidade Pessoas na mesa:");
+	gotoxy(19, 16);
+	printf("Valor a Pagar por pessoa..:");
+	
+	printf("\n\n");
+
+	// Saída de dados //
+	////////////////////
+
+	gotoxy(47,6);
+	printf("R$ %.2f", valorConsumo);
+	gotoxy(47,7);
+	printf("%.2f %%", porcentagemGorjeta);
+	gotoxy(47,8);
+	printf("R$ %.2f", valorGorjeta);
+	gotoxy(47,9);
+	printf("R$ %.2f", valorConta);
+	gotoxy(47,10);
+	printf("%.2f %%", porcentagemDesconto);
+	gotoxy(47,11);
+	printf("R$ %.2f", valorDesconto);
+	
+	gotoxy(47,13);
+	printf("R$ %.2f", valorPagar);
+	
+	gotoxy(47,15);
+	printf("%i", qtdPessoa);
+	gotoxy(47,16);
+	printf("R$ %.2f", valorPessoa);
+	
+	printf("\n\n");
 }
