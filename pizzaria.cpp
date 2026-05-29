@@ -68,8 +68,8 @@ int main()
 		gotoxy(10, 2);
 		printf("<<  Pizzaria Five nights at Bianchi  >>");
 		
-		gotoxy(11, 4);
-		printf("<< Consumo da mesa:     [0 = Sair] >>");
+		gotoxy(16, 4);
+		printf("<<  Consumo da mesa:     >>");
 		
 		gotoxy(20, 6);
 		printf("Chopps........: ");
@@ -91,7 +91,7 @@ int main()
 		////////////////////////////////////
 		
 		// Receber o número da mesa
-		gotoxy(31, 4);
+		gotoxy(37, 4);
 		fflush(stdin);
 		scanf("%i", &numMesa);
 		
