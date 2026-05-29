@@ -1,7 +1,4 @@
-
-// Nota: 8,5
-
-// Pizzaria 1.3.0
+// Pizzaria 1.3.1
 
 // Grupo 04:
 // Cesar Henrique;
@@ -23,9 +20,9 @@ void gotoxy(int col, int lin) {
 // Definição da função clreol para limpeza da linha
 void clreol(int col, int lin) {
 	int col1;
-	if ((lin > 0 && lin < 25) && (col > 0 && col < 81))		
+	if ((lin > 0 && lin < 25) && (col > 0 && col < 81))
 		for (col1 = col; col1 <= 80; ++ col1) {
-			gotoxy(col1,lin); puts(" ");		
+			gotoxy(col1,lin); puts(" ");
 		}
 }
 
@@ -54,11 +51,18 @@ int main()
 	// Valores finais após os cálculos
 	float valorConsumo, valorGorjeta, valorConta, porcentagemDesconto, valorDesconto, valorPagar, valorPessoa;
 	
-	// Exibindo a tela inicial //
-	/////////////////////////////
+	// Variável para controle de validação
+	bool validPizzaCobertura = false;
 	
-	// Loop do programa
+	
+	
+	// Início e loop do programa //
+	///////////////////////////////
+	
 	do {
+		// Exibindo a tela inicial //
+		/////////////////////////////
+		
 		system("cls");
 		
 		gotoxy(10, 2);
@@ -81,6 +85,8 @@ int main()
 		gotoxy(20, 12);
 		printf("Pessoas na mesa: ");
 		
+		
+		
 		// Recebendo e validando os dados //
 		////////////////////////////////////
 		
@@ -91,11 +97,8 @@ int main()
 		
 		// Validação da mesa
 		if (numMesa == 0) {
-			for (int  lin = 6; lin <= 12 ; ++lin)
-	    		for (int col = 20; col <= 35; ++col) {
-	    			gotoxy(col,lin);
-					puts(" ");
-				}
+			for (int lin = 6; lin <= 12; ++lin)
+				clreol(20, lin);
 			return 0;
 		}
 		
@@ -105,40 +108,40 @@ int main()
 		scanf("%i", &qtdChopp);
 		
 		do {
-			// Receber a quantidade de pizzas
+			// Reinicialização da variável
+			validPizzaCobertura = false;
+			
+			// Limpa a entrada do usuário de iteração passada
 			clreol(36, 7);
+			clreol(36, 8);
+			
+			// Receber a quantidade de pizzas
 			gotoxy(36, 7);
 			fflush(stdin);
 			scanf("%i", &qtdPizza);
 			
-			// Validar a quantidade de pizzas
-			gotoxy(2, 18);
-			
-// Aten  o! o enunciado pede para "n o pediu pizzas" por m "pediu cobertura" = erro			
-			
-			if (qtdPizza == 0)
-				printf("Erro: Informe a quantidade de Pizzas");
-			else
-				clreol(2, 18);
-		} while (qtdPizza == 0);
-		
-		do {
 			// Receber a quantidade de cobertura
-			clreol(36, 8);
 			gotoxy(36, 8);
 			fflush(stdin);
 			scanf("%i", &qtdCobertura);
 			
-			// Validar a quantidade de cobertura
-			gotoxy(2, 18);
-		
-// Aten  o! o enunciado pede para "n o pediu coberturas" por m "pediu pizzas" = erro				
-			
-			if (qtdCobertura == 0)
-				printf("Erro: Informe a quantidade de Cobertura");
-			else
+			// Validação de pizzas e coberturas
+			// Não pediu pizzas, porém pediu coberturas
+			if (qtdPizza == 0 && qtdCobertura >= 1) {
 				clreol(2, 18);
-		} while (qtdCobertura == 0);
+				gotoxy(2, 18);
+				printf("Erro: Informe a quantidade de Pizzas");
+			// Não pediu coberturas, porém pediu pizzas
+			} else if (qtdCobertura == 0 && qtdPizza >= 1) {
+				clreol(2, 18);
+				gotoxy(2, 18);
+				printf("Erro: Informe a quantidade de Cobertura");
+			// Validação sucesso
+			} else {
+				clreol(2, 18);
+				validPizzaCobertura = true;
+			}
+		} while (!validPizzaCobertura);
 		
 		// Receber a quantidade de refri
 		gotoxy(36, 9);
@@ -165,6 +168,8 @@ int main()
 				clreol(2, 18);
 		} while (qtdPessoa == 0);
 		
+		
+		
 	 	// Cálculos //
 	 	//////////////
 	 	
@@ -172,7 +177,7 @@ int main()
 			(qtdChopp * valorChopp) +
 			(qtdPizza * valorPizza) +
 			(qtdRefri * valorRefri) +
-			(qtdAgua * valorAgua)  +
+			(qtdAgua * valorAgua) +
 			(qtdCobertura * valorCobertura);
 	 	
 	 	valorGorjeta = valorConsumo * porcentagemGorjeta / 100;
@@ -189,6 +194,8 @@ int main()
 		valorDesconto = valorConta * porcentagemDesconto / 100;
 		valorPagar = valorConta - valorDesconto;
 		valorPessoa = valorPagar / qtdPessoa;
+	 	
+	 	
 	 	
 	 	// Exibindo a tela final //
 	 	///////////////////////////
@@ -221,7 +228,9 @@ int main()
 		printf("Quantidade Pessoas na mesa:");
 		gotoxy(19, 16);
 		printf("Valor a Pagar por pessoa..:");
-	
+		
+		
+		
 		// Saída de dados //
 		////////////////////
 		
