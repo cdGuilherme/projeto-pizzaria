@@ -68,8 +68,8 @@ int main()
 		gotoxy(10, 2);
 		printf("<<  Pizzaria Five nights at Bianchi  >>");
 		
-		gotoxy(11, 4);
-		printf("<< Consumo da mesa:     [0 = Sair] >>");
+		gotoxy(16, 4);
+		printf("<<  Consumo da mesa:     >>");
 		
 		gotoxy(20, 6);
 		printf("Chopps........: ");
@@ -92,9 +92,9 @@ int main()
 		
 		do {
 			// Receber o número da mesa
-			gotoxy(31, 4);
+			gotoxy(37, 4);
 			puts("   ");
-			gotoxy(31, 4);
+			gotoxy(37, 4);
 			fflush(stdin);
 			scanf("%i", &numMesa);
 			
@@ -105,7 +105,7 @@ int main()
 			else
 				clreol(8, 23);
 		} while (numMesa < 0 || numMesa > 10);
-		
+
 		// Validação da mesa
 		// Sair do programa se informado mesa 0
 		if (numMesa == 0) {
