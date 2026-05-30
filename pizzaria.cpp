@@ -1,4 +1,4 @@
-// Pizzaria 1.4.1
+// Pizzaria 1.4.2
 
 // Grupo 04:
 // Cesar Henrique;
@@ -99,7 +99,7 @@ int main()
 		do {
 			// Receber o número da mesa
 			gotoxy(37, 4);
-			puts("   ");
+			puts("    ");
 			gotoxy(37, 4);
 			fflush(stdin);
 			scanf("%i", &numMesa);
@@ -171,8 +171,8 @@ int main()
 		
 		do {
 			// Receber a quantidade de pessoas
-			clreol(36, 12);
-			gotoxy(36, 12);
+			clreol(37, 12);
+			gotoxy(37, 12);
 			fflush(stdin);
 			scanf("%i", &qtdPessoa);
 			
@@ -257,25 +257,25 @@ int main()
 		printf("%i", numMesa);
 	
 		gotoxy(47,6);
-		printf("R$ %.2f", valorConsumo);
+		printf("R$ %7.2f", valorConsumo);
 		gotoxy(47,7);
 		printf("%.2f %%", porcentagemGorjeta);
 		gotoxy(47,8);
-		printf("R$ %.2f", valorGorjeta);
+		printf("R$ %7.2f", valorGorjeta);
 		gotoxy(47,10);
-		printf("R$ %.2f", valorConta);
+		printf("R$ %7.2f", valorConta);
 		gotoxy(47,11);
 		printf("%.2f %%", porcentagemDesconto);
 		gotoxy(47,12);
-		printf("R$ %.2f", valorDesconto);
+		printf("R$ %7.2f", valorDesconto);
 		
 		gotoxy(47,14);
-		printf("R$ %.2f", valorPagar);
+		printf("R$ %7.2f", valorPagar);
 		
 		gotoxy(47,16);
 		printf("%i", qtdPessoa);
 		gotoxy(47,17);
-		printf("R$ %.2f", valorPessoa);
+		printf("R$ %7.2f", valorPessoa);
 		
 		printf("\n\n");
 		
