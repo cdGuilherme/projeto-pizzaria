@@ -222,10 +222,10 @@ int main()
 	 	system("cls");
 	 	
 		gotoxy(17, 2);
-		printf(" <<  Pizzaria Five nights at Bianchi  >>");
+		printf(" <<  Pizzaria Five nights at Bianchi   >>");
 		
-		gotoxy(17, 4);
-		printf("<<   Fechamento da Conta da Mesa:      >>");
+		gotoxy(19, 4);
+		printf("<<  Fechamento da Conta da Mesa:    >>");
 		
 		gotoxy(19, 6);
 		printf("Valor Total do Consumo....:");
@@ -233,19 +233,19 @@ int main()
 		printf("%% da Gorjeta do Garcom....:");
 		gotoxy(19, 8);
 		printf("Valor da Gorjeta..........:");
-		gotoxy(19, 9);
-		printf("Valor Total da conta......:");
 		gotoxy(19, 10);
-		printf("%% do desconto.............:");
-		gotoxy(19, 11);
-		printf("Valor do Desconto.........:");
-		
-		gotoxy(19, 13);
 		printf("Valor Total a Pagar.......:");
+		gotoxy(19, 11);
+		printf("%% do desconto.............:");
+		gotoxy(19, 12);
+		printf("Valor do desconto.........:");
 		
-		gotoxy(19, 15);
-		printf("Quantidade Pessoas na mesa:");
+		gotoxy(19, 14);
+		printf("Valor Total com Desconto..:");
+		
 		gotoxy(19, 16);
+		printf("Quantidade Pessoas na mesa:");
+		gotoxy(19, 17);
 		printf("Valor a Pagar por pessoa..:");
 		
 		
@@ -253,7 +253,7 @@ int main()
 		// Saída de dados 1 //
 		//////////////////////
 		
-		gotoxy(51, 4);
+		gotoxy(52, 4);
 		printf("%i", numMesa);
 	
 		gotoxy(47,6);
@@ -262,19 +262,19 @@ int main()
 		printf("%.2f %%", porcentagemGorjeta);
 		gotoxy(47,8);
 		printf("R$ %.2f", valorGorjeta);
-		gotoxy(47,9);
-		printf("R$ %.2f", valorConta);
 		gotoxy(47,10);
-		printf("%.2f %%", porcentagemDesconto);
+		printf("R$ %.2f", valorConta);
 		gotoxy(47,11);
+		printf("%.2f %%", porcentagemDesconto);
+		gotoxy(47,12);
 		printf("R$ %.2f", valorDesconto);
 		
-		gotoxy(47,13);
+		gotoxy(47,14);
 		printf("R$ %.2f", valorPagar);
 		
-		gotoxy(47,15);
-		printf("%i", qtdPessoa);
 		gotoxy(47,16);
+		printf("%i", qtdPessoa);
+		gotoxy(47,17);
 		printf("R$ %.2f", valorPessoa);
 		
 		printf("\n\n");
@@ -288,8 +288,16 @@ int main()
 	
 	system("cls");
 	 	
-	gotoxy(17, 2);
+	gotoxy(11, 2);
 	printf(" <<  Pizzaria Five nights at Bianchi  >>");
+	gotoxy(15,4);
+	printf("<<  Fechamento do Faturamento  >>");
+	gotoxy(21,6);
+	printf("Num.Mesa  Tot.Faturado");
+	gotoxy(5,19);
+	printf("Total do Faturamento do dia.. R$");
+	gotoxy(5,21);
+	printf("Média do Faturamento por Mesa R$");
 	
 	// ...
 	
