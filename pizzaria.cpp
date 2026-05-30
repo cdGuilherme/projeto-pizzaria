@@ -1,4 +1,4 @@
-// Pizzaria 1.4.0
+// Pizzaria 1.4.1
 
 // Grupo 04:
 // Cesar Henrique;
@@ -44,6 +44,12 @@ int main()
 		porcDescontoAte400 =  5.20, // %%
 		porcDescontoAte700 =  8.00, // %%
 		porcDescontoMaximo = 10.00; // %%
+	
+	// Quantidade de mesas
+	const int qtdMesas = 10;
+	
+	// Vetor acumulando o valor total pago de cada mesa
+	float acumuladoMesas[qtdMesas] = {};
 	
 	// Quantidade de consumo e de pessoas
 	int numMesa, qtdChopp, qtdPizza, qtdCobertura, qtdRefri, qtdAgua, qtdPessoa;
@@ -100,11 +106,11 @@ int main()
 			
 			// Mesas numeradas de 1 a 10
 			gotoxy(8, 23);
-			if (numMesa < 0 || numMesa > 10)
-				printf("Número da Mesa deve estar entre 1 e 10, inclusive.");
+			if (numMesa < 0 || numMesa > qtdMesas)
+				printf("Número da Mesa deve estar entre 1 e %i, inclusive.", qtdMesas);
 			else
 				clreol(8, 23);
-		} while (numMesa < 0 || numMesa > 10);
+		} while (numMesa < 0 || numMesa > qtdMesas);
 
 		// Validação da mesa
 		// Sair do programa se informado mesa 0
@@ -204,6 +210,9 @@ int main()
 		valorDesconto = valorConta * porcentagemDesconto / 100;
 		valorPagar = valorConta - valorDesconto;
 		valorPessoa = valorPagar / qtdPessoa;
+		
+		// Acumulando o valor total pago
+		acumuladoMesas[numMesa - 1] = valorPagar;
 	 	
 	 	
 	 	
