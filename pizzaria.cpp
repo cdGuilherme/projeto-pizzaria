@@ -48,8 +48,11 @@ int main()
 	// Quantidade de mesas
 	const int qtdMesas = 10;
 	
+	// Quantas mesas foram atendidas
+	int mesasAtendidas = 0;
+	
 	// Vetor acumulando o valor total pago de cada mesa
-	float acumuladoMesas[qtdMesas] = {};
+	float acumuladoMesas[qtdMesas] = {}, totalFaturado = 0, mediaMesas = 0;
 	
 	// Quantidade de consumo e de pessoas
 	int numMesa, qtdChopp, qtdPizza, qtdCobertura, qtdRefri, qtdAgua, qtdPessoa;
@@ -171,8 +174,8 @@ int main()
 		
 		do {
 			// Receber a quantidade de pessoas
-			clreol(36, 12);
-			gotoxy(36, 12);
+			clreol(37, 12);
+			gotoxy(37, 12);
 			fflush(stdin);
 			scanf("%i", &qtdPessoa);
 			
@@ -288,8 +291,8 @@ int main()
 	
 	system("cls");
 	 	
-	gotoxy(11, 2);
-	printf(" <<  Pizzaria Five nights at Bianchi  >>");
+	gotoxy(12, 2);
+	printf("<<  Pizzaria Five nights at Bianchi  >>");
 	gotoxy(15,4);
 	printf("<<  Fechamento do Faturamento  >>");
 	gotoxy(21,6);
@@ -304,6 +307,25 @@ int main()
 	// Saída de dados 2 //
 	//////////////////////
 	
+	// Print das mesas suas respectivas contas
+	for(int i = 0; i < qtdMesas;i++) {
+		if (acumuladoMesas[i] > 0)
+			mesasAtendidas++;
+		gotoxy(24,i + 8);
+		printf("%i", i + 1);
+		gotoxy(33,i + 8);
+		printf("%9.2f", acumuladoMesas[i]);
+		totalFaturado += acumuladoMesas[i];
+	}
+	
+	//Calculo da Média Faturada por Mesas
+	mediaMesas = totalFaturado / mesasAtendidas;
+	
+	// Print do total e das médias das mesas
+	gotoxy(38,19);
+	printf("%.2f", totalFaturado);
+	gotoxy(39,21);
+	printf("%.2f", mediaMesas);
 	// ...
 	
 	return 0;
