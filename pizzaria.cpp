@@ -1,4 +1,4 @@
-// Pizzaria 1.4.2
+// Pizzaria 1.4.3
 
 // Grupo 04:
 // Cesar Henrique;
@@ -215,7 +215,7 @@ int main()
 		valorPessoa = valorPagar / qtdPessoa;
 		
 		// Acumulando o valor total pago
-		acumuladoMesas[numMesa - 1] = valorPagar;
+		acumuladoMesas[numMesa - 1] += valorPagar;
 	 	
 	 	
 	 	
@@ -293,24 +293,26 @@ int main()
 	 	
 	gotoxy(12, 2);
 	printf("<<  Pizzaria Five nights at Bianchi  >>");
-	gotoxy(15,4);
-	printf("<<  Fechamento do Faturamento  >>");
-	gotoxy(21,6);
-	printf("Num.Mesa  Tot.Faturado");
-	gotoxy(5,19);
-	printf("Total do Faturamento do dia.. R$");
-	gotoxy(5,21);
-	printf("Média do Faturamento por Mesa R$");
 	
-	// ...
+	gotoxy(15, 4);
+	printf("<<  Fechamento do Faturamento  >>");
+	
+	gotoxy(21, 6);
+	printf("Num.Mesa  Tot.Faturado");
+	
+	gotoxy(5, 19);
+	printf("Total do Faturamento do dia.. R$");
+	gotoxy(5, 21);
+	printf("Média do Faturamento por Mesa R$");
 	
 	// Saída de dados 2 //
 	//////////////////////
 	
 	// Print das mesas suas respectivas contas
-	for(int i = 0; i < qtdMesas;i++) {
+	for(int i = 0; i < qtdMesas; i++) {
 		if (acumuladoMesas[i] > 0)
 			mesasAtendidas++;
+		
 		gotoxy(24,i + 8);
 		printf("%i", i + 1);
 		gotoxy(33,i + 8);
@@ -319,14 +321,21 @@ int main()
 	}
 	
 	//Calculo da Média Faturada por Mesas
-	mediaMesas = totalFaturado / mesasAtendidas;
+	if (mesasAtendidas != 0) {
+		mediaMesas = totalFaturado / mesasAtendidas;
+	}
 	
 	// Print do total e das médias das mesas
 	gotoxy(38,19);
 	printf("%.2f", totalFaturado);
+	
 	gotoxy(39,21);
 	printf("%.2f", mediaMesas);
-	// ...
+	
+	if (mesasAtendidas == 0) {
+		gotoxy(2, 23);
+		printf("Atenção! NÃO houve Faturamento neste dia!");
+	}
 	
 	return 0;
 }
