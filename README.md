@@ -6,6 +6,20 @@ O programa permite registrar o consumo de cada mesa, calcular gorjetas e descont
 
 ---
 
+## 📥 Download
+
+A versão mais recente do executável para Windows está disponível na página de Releases:
+
+👉 **[Baixar Projeto Pizzaria v4.3.1](https://github.com/cdGuilherme/projeto-pizzaria/releases/latest)**
+
+Ou acesse todas as versões publicadas:
+
+🔗 https://github.com/cdGuilherme/projeto-pizzaria/releases
+
+> O executável foi compilado para ambiente Windows e utiliza a biblioteca `windows.h`.
+
+---
+
 ## 👨‍💻 Integrantes do Grupo 04
 
 * [Cesar Henrique](https://github.com/cesarhenrique03)
