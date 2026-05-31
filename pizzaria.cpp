@@ -1,4 +1,4 @@
-// Pizzaria 1.4.3
+// Pizzaria v4.3.1
 
 // Grupo 04:
 // Cesar Henrique;
@@ -336,6 +336,8 @@ int main()
 		gotoxy(2, 23);
 		printf("Atenção! NÃO houve Faturamento neste dia!");
 	}
-	
+
+	printf("\n\n");
+	system("pause");
 	return 0;
 }
