@@ -1,0 +1,28 @@
+name: Build C++
+
+on:
+  push:
+    branches:
+      - main
+      - master
+  pull_request:
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout do código
+        uses: actions/checkout@v4
+
+      - name: Verificar versão do G++
+        run: g++ --version
+
+      - name: Compilar projeto
+        run: g++ -Wall -Wextra -pedantic pizzaria.cpp -o pizzaria.exe
+
+      - name: Upload do executável
+        uses: actions/upload-artifact@v4
+        with:
+          name: pizzaria-build
+          path: pizzaria.exe
