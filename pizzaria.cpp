@@ -105,9 +105,9 @@ int main()
 		do {
 			// Receber o n√∫mero da mesa
 			
-// AtenÁ„o! executar o procedimento: clreol  para limpar uma linha			
+// AtenÔøΩÔøΩo! executar o procedimento: clreol  para limpar uma linha			
 			
-			clreol(37, 4); //assim ele est· tirando o final ">>" da linha.
+			clreol(37, 4); //assim ele estÔøΩ tirando o final ">>" da linha.
 			gotoxy(37, 4);
 			fflush(stdin);
 			scanf("%i", &numMesa);
@@ -207,7 +207,7 @@ int main()
 	 	valorGorjeta = valorConsumo * porcentagemGorjeta / 100;
 	 	valorConta = valorConsumo + valorGorjeta;
 	 	
-	 	if (valorConta <= valorConta400) { // Criei as vari·veis valorConta400 e valorConta700 para definir os valores das contas atravÈs de vari·veis
+	 	if (valorConta <= valorConta400) { // Criei as variÔøΩveis valorConta400 e valorConta700 para definir os valores das contas atravÔøΩs de variÔøΩveis
 	 		porcentagemDesconto = porcDescontoAte400;
 		} else if (valorConta <= valorConta700) {
 			porcentagemDesconto = porcDescontoAte700;
@@ -304,45 +304,42 @@ int main()
 	gotoxy(15, 4);
 	printf("<<  Fechamento do Faturamento  >>");
 	
-//          Fauramento no dia
+	// Fauramento no dia
 
 	if (mesasAtendidas == 0) {
 		gotoxy(2, 23);
 		printf("Aten√ß√£o! N√ÉO houve Faturamento neste dia!");
 	} else {
-	gotoxy(21, 6);
-	printf("Num.Mesa  Tot.Faturado");
-	
-	gotoxy(5, 19);
-	printf("Total do Faturamento do dia.. R$");
-	gotoxy(5, 21);
-	printf("M√©dia do Faturamento por Mesa R$");
-	
-	// Sa√≠da de dados 2 //
-	//////////////////////
-	
-	//Precisa mexer nesse loop, est· quebrando no fechamento das contas
-	
-	// Print das mesas suas respectivas contas
-	for(int i = 0; i < qtdMesas; i++) {
-		if (acumuladoMesas[i] > 0)
 		
-		gotoxy(24,i + 8);
-		printf("%i", i + 1);
-		gotoxy(33,i + 8);
-		printf("%9.2f", acumuladoMesas[i]);
-		totalFaturado += acumuladoMesas[i];
-	}
-	
-	//Calculo da M√©dia Faturada por Mesas
-	mediaMesas = totalFaturado / mesasAtendidas;
-	
-	// Print do total e das m√©dias das mesas
-	gotoxy(38,19);
-	printf("%.2f", totalFaturado);
-	
-	gotoxy(39,21);
-	printf("%.2f", mediaMesas);
+		// Sa√≠da de dados 2 //
+		//////////////////////
+		
+		gotoxy(21, 6);
+		printf("Num.Mesa  Tot.Faturado");
+		
+		gotoxy(5, 19);
+		printf("Total do Faturamento do dia.. R$");
+		gotoxy(5, 21);
+		printf("M√©dia do Faturamento por Mesa R$");
+		
+		// Print das mesas suas respectivas contas
+		for(int i = 0; i < qtdMesas; i++) {
+			gotoxy(24,i + 8);
+			printf("%i", i + 1);
+			gotoxy(33,i + 8);
+			printf("%9.2f", acumuladoMesas[i]);
+			totalFaturado += acumuladoMesas[i];
+		}
+		
+		//Calculo da M√©dia Faturada por Mesas
+		mediaMesas = totalFaturado / mesasAtendidas;
+		
+		// Print do total e das m√©dias das mesas
+		gotoxy(38,19);
+		printf("%.2f", totalFaturado);
+		
+		gotoxy(39,21);
+		printf("%.2f", mediaMesas);
 	}
 	
 	return 0;
