@@ -1,4 +1,7 @@
-// Pizzaria v4.3.1
+
+// Nota: 9,0
+
+// Pizzaria 1.4.3
 
 // Grupo 04:
 // Cesar Henrique;
@@ -102,6 +105,9 @@ int main()
 		do {
 			// Receber o nÃºmero da mesa
 			gotoxy(37, 4);
+			
+// Atenção! executar o procedimento: clreol  para limpar uma linha			
+			
 			puts("    ");
 			gotoxy(37, 4);
 			fflush(stdin);
@@ -201,6 +207,8 @@ int main()
 	 	
 	 	valorGorjeta = valorConsumo * porcentagemGorjeta / 100;
 	 	valorConta = valorConsumo + valorGorjeta;
+
+// Atenção! declarar valores constantes no início do programa
 	 	
 	 	if (valorConta <= 400) {
 	 		porcentagemDesconto = porcDescontoAte400;
@@ -296,6 +304,10 @@ int main()
 	
 	gotoxy(15, 4);
 	printf("<<  Fechamento do Faturamento  >>");
+
+// Atenção! Mostrar valores de faturamento por mesa e valores totais somente se houve
+//          Fauramento no dia
+
 	
 	gotoxy(21, 6);
 	printf("Num.Mesa  Tot.Faturado");
@@ -336,8 +348,6 @@ int main()
 		gotoxy(2, 23);
 		printf("AtenÃ§Ã£o! NÃƒO houve Faturamento neste dia!");
 	}
-
-	printf("\n\n");
-	system("pause");
+	
 	return 0;
 }
