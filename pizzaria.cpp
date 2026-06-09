@@ -80,10 +80,6 @@ int main()
 		gotoxy(10, 2);
 		printf("<<  Pizzaria Five nights at Bianchi  >>");
 		
-		clreol(37, 4);
-		gotoxy(16, 4);
-		printf("<<  Consumo da mesa:     >>");
-		
 		gotoxy(20, 6);
 		printf("Chopps........: ");
 		gotoxy(20, 7);
@@ -107,6 +103,10 @@ int main()
 			// Receber o número da mesa
 			
 // Aten��o! executar o procedimento: clreol  para limpar uma linha
+
+clreol(37, 4);
+		gotoxy(16, 4);
+		printf("<<  Consumo da mesa:     >>");
 
 			gotoxy(37, 4);
 			fflush(stdin);
