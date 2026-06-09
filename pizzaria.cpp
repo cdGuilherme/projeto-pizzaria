@@ -80,6 +80,7 @@ int main()
 		gotoxy(10, 2);
 		printf("<<  Pizzaria Five nights at Bianchi  >>");
 		
+		clreol(37, 4);
 		gotoxy(16, 4);
 		printf("<<  Consumo da mesa:     >>");
 		
@@ -105,9 +106,8 @@ int main()
 		do {
 			// Receber o nÃºmero da mesa
 			
-// Atenção! executar o procedimento: clreol  para limpar uma linha			
-			
-			clreol(37, 4); //assim ele está tirando o final ">>" da linha.
+// Atenï¿½ï¿½o! executar o procedimento: clreol  para limpar uma linha		
+
 			gotoxy(37, 4);
 			fflush(stdin);
 			scanf("%i", &numMesa);
@@ -207,7 +207,7 @@ int main()
 	 	valorGorjeta = valorConsumo * porcentagemGorjeta / 100;
 	 	valorConta = valorConsumo + valorGorjeta;
 	 	
-	 	if (valorConta <= valorConta400) { // Criei as variáveis valorConta400 e valorConta700 para definir os valores das contas através de variáveis
+	 	if (valorConta <= valorConta400) { // Criei as variï¿½veis valorConta400 e valorConta700 para definir os valores das contas atravï¿½s de variï¿½veis
 	 		porcentagemDesconto = porcDescontoAte400;
 		} else if (valorConta <= valorConta700) {
 			porcentagemDesconto = porcDescontoAte700;
@@ -321,7 +321,7 @@ int main()
 	// SaÃ­da de dados 2 //
 	//////////////////////
 	
-	//Precisa mexer nesse loop, está quebrando no fechamento das contas
+	//Precisa mexer nesse loop, estï¿½ quebrando no fechamento das contas
 	
 	// Print das mesas suas respectivas contas
 	for(int i = 0; i < qtdMesas; i++) {
