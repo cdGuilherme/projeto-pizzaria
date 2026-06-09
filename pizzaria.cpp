@@ -49,7 +49,7 @@ int main()
 		porcDescontoMaximo = 10.00; // %%
 	
 	// Quantidade de mesas
-	const int qtdMesas = 10;
+	const int qtdMesas = 10, valorConta400 = 400, valorConta700 = 700;
 	
 	// Quantas mesas foram atendidas
 	int mesasAtendidas = 0;
@@ -104,11 +104,10 @@ int main()
 		
 		do {
 			// Receber o n√∫mero da mesa
-			gotoxy(37, 4);
 			
 // AtenÁ„o! executar o procedimento: clreol  para limpar uma linha			
 			
-			puts("    ");
+			clreol(37, 4); //assim ele est· tirando o final ">>" da linha.
 			gotoxy(37, 4);
 			fflush(stdin);
 			scanf("%i", &numMesa);
@@ -207,12 +206,10 @@ int main()
 	 	
 	 	valorGorjeta = valorConsumo * porcentagemGorjeta / 100;
 	 	valorConta = valorConsumo + valorGorjeta;
-
-// AtenÁ„o! declarar valores constantes no inÌcio do programa
 	 	
-	 	if (valorConta <= 400) {
+	 	if (valorConta <= valorConta400) { // Criei as vari·veis valorConta400 e valorConta700 para definir os valores das contas atravÈs de vari·veis
 	 		porcentagemDesconto = porcDescontoAte400;
-		} else if (valorConta <= 700) {
+		} else if (valorConta <= valorConta700) {
 			porcentagemDesconto = porcDescontoAte700;
 		} else {
 			porcentagemDesconto = porcDescontoMaximo;
@@ -291,6 +288,8 @@ int main()
 		printf("\n\n");
 		
 		system("pause");
+		
+		mesasAtendidas++;
 	
 	} while (numMesa != 0); // Se informar 0 na mesa, exibe a tela de saida 2
 	
@@ -304,11 +303,13 @@ int main()
 	
 	gotoxy(15, 4);
 	printf("<<  Fechamento do Faturamento  >>");
-
-// AtenÁ„o! Mostrar valores de faturamento por mesa e valores totais somente se houve
+	
 //          Fauramento no dia
 
-	
+	if (mesasAtendidas == 0) {
+		gotoxy(2, 23);
+		printf("Aten√ß√£o! N√ÉO houve Faturamento neste dia!");
+	} else {
 	gotoxy(21, 6);
 	printf("Num.Mesa  Tot.Faturado");
 	
@@ -320,10 +321,11 @@ int main()
 	// Sa√≠da de dados 2 //
 	//////////////////////
 	
+	//Precisa mexer nesse loop, est· quebrando no fechamento das contas
+	
 	// Print das mesas suas respectivas contas
 	for(int i = 0; i < qtdMesas; i++) {
 		if (acumuladoMesas[i] > 0)
-			mesasAtendidas++;
 		
 		gotoxy(24,i + 8);
 		printf("%i", i + 1);
@@ -333,9 +335,7 @@ int main()
 	}
 	
 	//Calculo da M√©dia Faturada por Mesas
-	if (mesasAtendidas != 0) {
-		mediaMesas = totalFaturado / mesasAtendidas;
-	}
+	mediaMesas = totalFaturado / mesasAtendidas;
 	
 	// Print do total e das m√©dias das mesas
 	gotoxy(38,19);
@@ -343,10 +343,6 @@ int main()
 	
 	gotoxy(39,21);
 	printf("%.2f", mediaMesas);
-	
-	if (mesasAtendidas == 0) {
-		gotoxy(2, 23);
-		printf("Aten√ß√£o! N√ÉO houve Faturamento neste dia!");
 	}
 	
 	return 0;
