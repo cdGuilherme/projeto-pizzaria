@@ -80,6 +80,7 @@ int main()
 		gotoxy(10, 2);
 		printf("<<  Pizzaria Five nights at Bianchi  >>");
 		
+		clreol(37, 4);
 		gotoxy(16, 4);
 		printf("<<  Consumo da mesa:     >>");
 		
@@ -105,9 +106,8 @@ int main()
 		do {
 			// Receber o número da mesa
 			
-// Aten��o! executar o procedimento: clreol  para limpar uma linha			
-			
-			clreol(37, 4); //assim ele est� tirando o final ">>" da linha.
+// Aten��o! executar o procedimento: clreol  para limpar uma linha
+
 			gotoxy(37, 4);
 			fflush(stdin);
 			scanf("%i", &numMesa);
@@ -310,7 +310,6 @@ int main()
 		gotoxy(2, 23);
 		printf("Atenção! NÃO houve Faturamento neste dia!");
 	} else {
-		
 		// Saída de dados 2 //
 		//////////////////////
 		
