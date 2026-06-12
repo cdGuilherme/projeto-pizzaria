@@ -55,13 +55,13 @@ int main()
 	int mesasAtendidas = 0;
 	
 	// Vetor acumulando o valor total pago de cada mesa
-	float acumuladoMesas[qtdMesas] = {}, totalFaturado = 0, mediaMesas = 0;
+	float acumuladoMesas[qtdMesas][7] = {}, totalFaturado = 0, mediaMesas = 0;
 	
 	// Quantidade de consumo e de pessoas
 	int numMesa, qtdChopp, qtdPizza, qtdCobertura, qtdRefri, qtdAgua, qtdPessoa;
 	
 	// Valores finais após os cálculos
-	float valorConsumo, valorGorjeta, valorConta, porcentagemDesconto, valorDesconto, valorPagar, valorPessoa;
+	float valorConsumo, valorGorjeta, valorConta, porcentagemDesconto, valorDesconto, valorPagar, valorPessoa,totalChopp, totalPizza, totalCobertura, totalRefri, totalAgua;
 	
 	// Variável para controle de validação
 	bool validPizzaCobertura = false;
@@ -101,8 +101,6 @@ int main()
 		
 		do {
 			// Receber o número da mesa
-			
-// Aten��o! executar o procedimento: clreol  para limpar uma linha
 
 clreol(37, 4);
 		gotoxy(16, 4);
@@ -197,12 +195,13 @@ clreol(37, 4);
 	 	// Cálculos //
 	 	//////////////
 	 	
-	 	valorConsumo =
-			(qtdChopp * valorChopp) +
-			(qtdPizza * valorPizza) +
-			(qtdRefri * valorRefri) +
-			(qtdAgua * valorAgua) +
-			(qtdCobertura * valorCobertura);
+		totalChopp = (qtdChopp * valorChopp);
+		totalPizza = (qtdPizza * valorPizza);
+		totalRefri = (qtdRefri * valorRefri);
+		totalAgua = (qtdAgua * valorAgua);
+		totalCobertura = (qtdCobertura * valorCobertura);
+		
+		valorConsumo = totalChopp + totalPizza + totalRefri + totalAgua + totalCobertura;
 	 	
 	 	valorGorjeta = valorConsumo * porcentagemGorjeta / 100;
 	 	valorConta = valorConsumo + valorGorjeta;
@@ -219,8 +218,14 @@ clreol(37, 4);
 		valorPagar = valorConta - valorDesconto;
 		valorPessoa = valorPagar / qtdPessoa;
 		
-		// Acumulando o valor total pago
-		acumuladoMesas[numMesa - 1] += valorPagar;
+		// Acumulando o valor total e tudo que foi consumido
+		acumuladoMesas[numMesa - 1][0] += valorPagar;
+		acumuladoMesas[numMesa - 1][1] += totalChopp;
+		acumuladoMesas[numMesa - 1][2] += totalPizza;
+		acumuladoMesas[numMesa - 1][3] += totalRefri;
+		acumuladoMesas[numMesa - 1][4] += totalAgua;
+		acumuladoMesas[numMesa - 1][5] += totalCobertura;
+		acumuladoMesas[numMesa - 1][6] += qtdPessoas;
 	 	
 	 	
 	 	
