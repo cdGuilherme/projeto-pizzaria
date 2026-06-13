@@ -1,4 +1,4 @@
-// Pizzaria 5.0.1
+// Pizzaria 5.0.2
 
 // Grupo 04:
 // Cesar Henrique;
@@ -26,6 +26,16 @@ void clreol(int col, int lin) {
 		}
 }
 
+struct ResumoMesa {
+	float valorPagar;
+	float totalChopp;
+	float totalPizza;
+	float totalCobertura;
+	float totalRefri;
+	float totalAgua;
+	int qtdPessoa;
+};
+
 int main()
 {
 	setlocale(LC_ALL, "pt-BR");
@@ -33,35 +43,43 @@ int main()
 	// Definindo as variaveis //
 	////////////////////////////
 	
-	// Valores de cada produto ou serviço
+	// Valores de cada produto ou servico
 	const float
-		valorChopp         = 15.00, // R$
-		valorPizza         = 55.00, // R$
-		valorCobertura     = 10.00, // R$
-		valorRefri         =  8.00, // R$
-		valorAgua          =  6.00, // R$
-		porcentagemGorjeta = 10.00, // %%
-		porcDescontoAte400 =  5.20, // %%
-		porcDescontoAte700 =  8.00, // %%
-		porcDescontoMaximo = 10.00; // %%
+		precoChopp         = 15.00, // R$
+		precoPizza         = 55.00, // R$
+		precoCobertura     = 10.00, // R$
+		precoRefri         =  8.00, // R$
+		precoAgua          =  6.00, // R$
+		taxaGorjeta 	   = 10.00, // %%
+		taxaDesconto1 	   =  5.20, // %%
+		taxaDesconto2 	   =  8.00, // %%
+		taxaDescontoMaximo = 10.00; // %%
+	
+	// Limite de descontos
+	const float
+		limiteDesconto1 = 400.00, // R$
+		limiteDesconto2 = 700.00; // R$
 	
 	// Quantidade de mesas
-	const int qtdMesas = 10, valorConta400 = 400, valorConta700 = 700;
-	
-	// Quantidade de mesas atendidas
-	int mesasAtendidas = 0;
-	
-	// Vetor acumulando o valor total pago de cada mesa
-	float acumuladoMesas[qtdMesas][7] = {}, totalFaturado = 0, mediaMesas = 0;
+	const int qtdMesas = 10;
 	
 	// Quantidade de consumo e de pessoas
 	int numMesa, qtdChopp, qtdPizza, qtdCobertura, qtdRefri, qtdAgua, qtdPessoa;
 	
-	// Valores finais apos os calculos
-	float valorConsumo, valorGorjeta, valorConta, porcentagemDesconto, valorDesconto, valorPagar, valorPessoa,totalChopp, totalPizza, totalCobertura, totalRefri, totalAgua;
-	
 	// Variavel para controle de validacao
 	bool validPizzaCobertura = false;
+	
+	// Valores finais apos os calculos por mesa
+	float valorConsumo, valorGorjeta, valorConta, porcentagemDesconto, valorDesconto, valorPagar, valorPessoa, totalChopp, totalPizza, totalCobertura, totalRefri, totalAgua;
+	
+	// Quantidade de mesas atendidas
+	int mesasAtendidas = 0;
+	
+	// Vetor de mesas utilizando struct do C++
+	ResumoMesa resumoMesas[qtdMesas] = {};
+	
+	// Valores finais para tela de saida 2
+	float totalFaturado = 0, mediaMesas = 0;
 	
 	
 	
@@ -191,23 +209,23 @@ int main()
 	 	// Calculos //
 	 	//////////////
 	 	
-		totalChopp = (qtdChopp * valorChopp);
-		totalPizza = (qtdPizza * valorPizza);
-		totalRefri = (qtdRefri * valorRefri);
-		totalAgua = (qtdAgua * valorAgua);
-		totalCobertura = (qtdCobertura * valorCobertura);
+		totalChopp = (qtdChopp * precoChopp);
+		totalPizza = (qtdPizza * precoPizza);
+		totalRefri = (qtdRefri * precoRefri);
+		totalAgua = (qtdAgua * precoAgua);
+		totalCobertura = (qtdCobertura * precoCobertura);
 		
 		valorConsumo = totalChopp + totalPizza + totalRefri + totalAgua + totalCobertura;
 	 	
-	 	valorGorjeta = valorConsumo * porcentagemGorjeta / 100;
+	 	valorGorjeta = valorConsumo * taxaGorjeta / 100;
 	 	valorConta = valorConsumo + valorGorjeta;
 	 	
-	 	if (valorConta <= valorConta400) {
-	 		porcentagemDesconto = porcDescontoAte400;
-		} else if (valorConta <= valorConta700) {
-			porcentagemDesconto = porcDescontoAte700;
+	 	if (valorConta <= limiteDesconto1) {
+	 		porcentagemDesconto = taxaDesconto1;
+		} else if (valorConta <= limiteDesconto2) {
+			porcentagemDesconto = taxaDesconto2;
 		} else {
-			porcentagemDesconto = porcDescontoMaximo;
+			porcentagemDesconto = taxaDescontoMaximo;
 		}
 		
 		valorDesconto = valorConta * porcentagemDesconto / 100;
@@ -215,13 +233,13 @@ int main()
 		valorPessoa = valorPagar / qtdPessoa;
 		
 		// Acumulando o valor total e tudo que foi consumido
-		acumuladoMesas[numMesa - 1][0] = valorPagar;
-		acumuladoMesas[numMesa - 1][1] = totalChopp;
-		acumuladoMesas[numMesa - 1][2] = totalPizza;
-		acumuladoMesas[numMesa - 1][3] = totalRefri;
-		acumuladoMesas[numMesa - 1][4] = totalAgua;
-		acumuladoMesas[numMesa - 1][5] = totalCobertura;
-		acumuladoMesas[numMesa - 1][6] = qtdPessoa;
+		resumoMesas[numMesa - 1].valorPagar = valorPagar;
+		resumoMesas[numMesa - 1].totalChopp = totalChopp;
+		resumoMesas[numMesa - 1].totalPizza = totalPizza;
+		resumoMesas[numMesa - 1].totalRefri = totalRefri;
+		resumoMesas[numMesa - 1].totalAgua = totalAgua;
+		resumoMesas[numMesa - 1].totalCobertura = totalCobertura;
+		resumoMesas[numMesa - 1].qtdPessoa = qtdPessoa;
 	 	
 	 	
 	 	
@@ -268,7 +286,7 @@ int main()
 		gotoxy(47,6);
 		printf("R$ %7.2f", valorConsumo);
 		gotoxy(47,7);
-		printf("%.2f %%", porcentagemGorjeta);
+		printf("%.2f %%", taxaGorjeta);
 		gotoxy(47,8);
 		printf("R$ %7.2f", valorGorjeta);
 		gotoxy(47,10);
@@ -307,10 +325,7 @@ int main()
 	
 	// Fauramento no dia
 
-	if (mesasAtendidas == 0) {
-		gotoxy(2, 23);
-		printf("Atenção! NÃO houve Faturamento neste dia!");
-	} else {
+	if (mesasAtendidas != 0) {
 		// Saida de dados 2 //
 		//////////////////////
 		
@@ -343,39 +358,40 @@ int main()
 		puts("Pessoas");
 		
 		// Exibe o valor individual de cada mesa
-		int linha = 0;
+		int linha = 0; // Variavel auxiliar para nao pular linhas ao exibir mesas
 		for (int i = 0; i < qtdMesas; i++) {
-			if (!acumuladoMesas[i][0] == 0) {
+			if (resumoMesas[i].valorPagar != 0) {
+				int y = 8 + linha;
 				// Numero mesa
-				gotoxy(7, 8+linha);
+				gotoxy(7, y);
 				printf("%2.i", i + 1);
 				
 				// Pizzas
-				gotoxy(12, 8+linha);
-				printf("%9.2f", acumuladoMesas[i][2]);
+				gotoxy(12, y);
+				printf("%9.2f", resumoMesas[i].totalPizza);
 				
 				// Coberturas
-				gotoxy(23, 8+linha);
-				printf("%9.2f", acumuladoMesas[i][5]);
+				gotoxy(23, y);
+				printf("%9.2f", resumoMesas[i].totalCobertura);
 				
 				// Chopps
-				gotoxy(34, 8+linha);
-				printf("%9.2f", acumuladoMesas[i][1]);
+				gotoxy(34, y);
+				printf("%9.2f", resumoMesas[i].totalChopp);
 				
 				// Refri
-				gotoxy(45, 8+linha);
-				printf("%9.2f", acumuladoMesas[i][3]);
+				gotoxy(45, y);
+				printf("%9.2f", resumoMesas[i].totalRefri);
 				
 				// Agua
-				gotoxy(56, 8+linha);
-				printf("%9.2f", acumuladoMesas[i][4]);
+				gotoxy(56, y);
+				printf("%9.2f", resumoMesas[i].totalAgua);
 				
 				// Total Pessoas
-				gotoxy(69, 8+linha);
-				printf("%3.0f", acumuladoMesas[i][6]);
+				gotoxy(69, y);
+				printf("%3.i", resumoMesas[i].qtdPessoa);
 				
 				// Soma do valor total de todas as mesas
-				totalFaturado += acumuladoMesas[i][0];
+				totalFaturado += resumoMesas[i].valorPagar;
 				
 				linha++;
 			}
@@ -395,7 +411,10 @@ int main()
 		
 		gotoxy(39,21);
 		printf("%.2f", mediaMesas);
-
+		
+	} else {
+		gotoxy(2, 23);
+		printf("Atenção! NÃO houve Faturamento neste dia!");
 	}
 	
 	return 0;
