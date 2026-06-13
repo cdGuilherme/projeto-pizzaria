@@ -1,4 +1,4 @@
-// Pizzaria 5.0.0
+// Pizzaria 5.0.1
 
 // Grupo 04:
 // Cesar Henrique;
@@ -12,12 +12,12 @@
 #include <locale.h>
 #include <windows.h>
 
-// Definição da função gotoxy para mapeamento da tela
+// Definicao da funcao gotoxy para mapeamento da tela
 void gotoxy(int col, int lin) {
     SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE),(COORD){col-1,lin-1});
 }
 
-// Definição da função clreol para limpeza da linha
+// Definicao da funcao clreol para limpeza da linha
 void clreol(int col, int lin) {
 	int col1;
 	if ((lin > 0 && lin < 25) && (col > 0 && col < 81))
@@ -30,7 +30,7 @@ int main()
 {
 	setlocale(LC_ALL, "pt-BR");
 	
-	// Definindo as variáveis //
+	// Definindo as variaveis //
 	////////////////////////////
 	
 	// Valores de cada produto ou serviço
@@ -48,7 +48,7 @@ int main()
 	// Quantidade de mesas
 	const int qtdMesas = 10, valorConta400 = 400, valorConta700 = 700;
 	
-	// Quantas mesas foram atendidas
+	// Quantidade de mesas atendidas
 	int mesasAtendidas = 0;
 	
 	// Vetor acumulando o valor total pago de cada mesa
@@ -57,15 +57,15 @@ int main()
 	// Quantidade de consumo e de pessoas
 	int numMesa, qtdChopp, qtdPizza, qtdCobertura, qtdRefri, qtdAgua, qtdPessoa;
 	
-	// Valores finais após os cálculos
+	// Valores finais apos os calculos
 	float valorConsumo, valorGorjeta, valorConta, porcentagemDesconto, valorDesconto, valorPagar, valorPessoa,totalChopp, totalPizza, totalCobertura, totalRefri, totalAgua;
 	
-	// Variável para controle de validação
+	// Variavel para controle de validacao
 	bool validPizzaCobertura = false;
 	
 	
 	
-	// Início e loop do programa //
+	// Inicio e loop do programa //
 	///////////////////////////////
 	
 	do {
@@ -97,8 +97,7 @@ int main()
 		////////////////////////////////////
 		
 		do {
-			// Receber o número da mesa
-
+			// Receber o numero da mesa
 			clreol(37, 4);
 			gotoxy(16, 4);
 			printf("<<  Consumo da mesa:     >>");
@@ -115,7 +114,7 @@ int main()
 				clreol(8, 23);
 		} while (numMesa < 0 || numMesa > qtdMesas);
 
-		// Validação da mesa
+		// Validacao da mesa
 		// Sair do programa se informado mesa 0
 		if (numMesa == 0) {
 			break;
@@ -127,10 +126,10 @@ int main()
 		scanf("%i", &qtdChopp);
 		
 		do {
-			// Reinicialização da variável
+			// Reinicializacao da variavel
 			validPizzaCobertura = false;
 			
-			// Limpa a entrada do usuário de iteração passada
+			// Limpa a entrada do usuario de iteracao passada
 			clreol(36, 7);
 			clreol(36, 8);
 			
@@ -144,18 +143,18 @@ int main()
 			fflush(stdin);
 			scanf("%i", &qtdCobertura);
 			
-			// Validação de pizzas e coberturas
-			// Não pediu pizzas, porém pediu coberturas
+			// Validacao de pizzas e coberturas
+			// Nao pediu pizzas, porem pediu coberturas
 			if (qtdPizza == 0 && qtdCobertura >= 1) {
 				clreol(8, 23);
 				gotoxy(8, 23);
 				printf("Erro: Informe a quantidade de Pizzas");
-			// Não pediu coberturas, porém pediu pizzas
+			// Nao pediu coberturas, porem pediu pizzas
 			} else if (qtdCobertura == 0 && qtdPizza >= 1) {
 				clreol(8, 23);
 				gotoxy(8, 23);
 				printf("Erro: Informe a quantidade de Cobertura");
-			// Validação sucesso
+			// Validacao sucesso
 			} else {
 				clreol(8, 23);
 				validPizzaCobertura = true;
@@ -167,7 +166,7 @@ int main()
 		fflush(stdin);
 		scanf("%i", &qtdRefri);
 		
-		// Receber a quantidade de água
+		// Receber a quantidade de agua
 		gotoxy(36, 10);
 		fflush(stdin);
 		scanf("%i", &qtdAgua);
@@ -189,7 +188,7 @@ int main()
 		
 		
 		
-	 	// Cálculos //
+	 	// Calculos //
 	 	//////////////
 	 	
 		totalChopp = (qtdChopp * valorChopp);
@@ -203,7 +202,7 @@ int main()
 	 	valorGorjeta = valorConsumo * porcentagemGorjeta / 100;
 	 	valorConta = valorConsumo + valorGorjeta;
 	 	
-	 	if (valorConta <= valorConta400) { // Criei as vari�veis valorConta400 e valorConta700 para definir os valores das contas atrav�s de vari�veis
+	 	if (valorConta <= valorConta400) {
 	 		porcentagemDesconto = porcDescontoAte400;
 		} else if (valorConta <= valorConta700) {
 			porcentagemDesconto = porcDescontoAte700;
@@ -260,7 +259,7 @@ int main()
 		
 		
 		
-		// Saída de dados 1 //
+		// Saida de dados 1 //
 		//////////////////////
 		
 		gotoxy(52, 4);
@@ -295,7 +294,7 @@ int main()
 	
 	} while (numMesa != 0); // Se informar 0 na mesa, exibe a tela de saida 2
 	
-	// Exibindo a tela de saída 2 //
+	// Exibindo a tela de saida 2 //
 	////////////////////////////////
 	
 	system("cls");
@@ -387,10 +386,10 @@ int main()
 		gotoxy(5, 21);
 		printf("Média do Faturamento por Mesa R$");
 		
-		// Calculo da Média Faturada por Mesas
+		// Calculo da media faturada por mesas
 		mediaMesas = totalFaturado / mesasAtendidas;
 		
-		// Print do total e das médias das mesas
+		// Print do total e das medias das mesas
 		gotoxy(38,19);
 		printf("%.2f", totalFaturado);
 		
