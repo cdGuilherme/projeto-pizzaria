@@ -1,4 +1,4 @@
-// Pizzaria 5.0.0dev
+// Pizzaria 5.0.0
 
 // Grupo 04:
 // Cesar Henrique;
@@ -99,9 +99,9 @@ int main()
 		do {
 			// Receber o número da mesa
 
-clreol(37, 4);
-		gotoxy(16, 4);
-		printf("<<  Consumo da mesa:     >>");
+			clreol(37, 4);
+			gotoxy(16, 4);
+			printf("<<  Consumo da mesa:     >>");
 
 			gotoxy(37, 4);
 			fflush(stdin);
@@ -216,13 +216,13 @@ clreol(37, 4);
 		valorPessoa = valorPagar / qtdPessoa;
 		
 		// Acumulando o valor total e tudo que foi consumido
-		acumuladoMesas[numMesa - 1][0] += valorPagar;
-		acumuladoMesas[numMesa - 1][1] += totalChopp;
-		acumuladoMesas[numMesa - 1][2] += totalPizza;
-		acumuladoMesas[numMesa - 1][3] += totalRefri;
-		acumuladoMesas[numMesa - 1][4] += totalAgua;
-		acumuladoMesas[numMesa - 1][5] += totalCobertura;
-		acumuladoMesas[numMesa - 1][6] += qtdPessoa;
+		acumuladoMesas[numMesa - 1][0] = valorPagar;
+		acumuladoMesas[numMesa - 1][1] = totalChopp;
+		acumuladoMesas[numMesa - 1][2] = totalPizza;
+		acumuladoMesas[numMesa - 1][3] = totalRefri;
+		acumuladoMesas[numMesa - 1][4] = totalAgua;
+		acumuladoMesas[numMesa - 1][5] = totalCobertura;
+		acumuladoMesas[numMesa - 1][6] = qtdPessoa;
 	 	
 	 	
 	 	
@@ -303,7 +303,7 @@ clreol(37, 4);
 	gotoxy(12, 2);
 	printf("<<  Pizzaria Five nights at Bianchi  >>");
 	
-	gotoxy(15, 4);
+	gotoxy(15, 3);
 	printf("<<  Fechamento do Faturamento  >>");
 	
 	// Fauramento no dia
@@ -312,27 +312,82 @@ clreol(37, 4);
 		gotoxy(2, 23);
 		printf("Atenção! NÃO houve Faturamento neste dia!");
 	} else {
-		// Saída de dados 2 //
+		// Saida de dados 2 //
 		//////////////////////
 		
-		gotoxy(21, 6);
-		printf("Num.Mesa  Tot.Faturado");
+		gotoxy(12, 5);
+		puts("<<<           Valor Total Consumido               >>>");
+		
+		gotoxy(5, 5);
+		puts("Numero");
+		gotoxy(6, 6);
+		puts("Mesa");
+		
+		gotoxy(13, 6);
+		puts("Pizzas");
+		
+		gotoxy(23, 6);
+		puts("Coberturas");
+		
+		gotoxy(35, 6);
+		puts("Chopps");
+		
+		gotoxy(47, 6);
+		puts("Refri");
+		
+		gotoxy(58, 6);
+		puts("�gua");
+		
+		gotoxy(68, 5);
+		puts("Total");
+		gotoxy(67, 6);
+		puts("Pessoas");
+		
+		// Exibe o valor individual de cada mesa
+		int linha = 0;
+		for (int i = 0; i < qtdMesas; i++) {
+			if (!acumuladoMesas[i][0] == 0) {
+				// Numero mesa
+				gotoxy(7, 8+linha);
+				printf("%2.i", i + 1);
+				
+				// Pizzas
+				gotoxy(12, 8+linha);
+				printf("%9.2f", acumuladoMesas[i][2]);
+				
+				// Coberturas
+				gotoxy(23, 8+linha);
+				printf("%9.2f", acumuladoMesas[i][5]);
+				
+				// Chopps
+				gotoxy(34, 8+linha);
+				printf("%9.2f", acumuladoMesas[i][1]);
+				
+				// Refri
+				gotoxy(45, 8+linha);
+				printf("%9.2f", acumuladoMesas[i][3]);
+				
+				// Agua
+				gotoxy(56, 8+linha);
+				printf("%9.2f", acumuladoMesas[i][4]);
+				
+				// Total Pessoas
+				gotoxy(69, 8+linha);
+				printf("%3.0f", acumuladoMesas[i][6]);
+				
+				// Soma do valor total de todas as mesas
+				totalFaturado += acumuladoMesas[i][0];
+				
+				linha++;
+			}
+		}
 		
 		gotoxy(5, 19);
 		printf("Total do Faturamento do dia.. R$");
 		gotoxy(5, 21);
 		printf("Média do Faturamento por Mesa R$");
 		
-		// Print das mesas suas respectivas contas
-		for(int i = 0; i < qtdMesas; i++) {
-			gotoxy(24,i + 8);
-			printf("%i", i + 1);
-			gotoxy(33,i + 8);
-			printf("%9.2f", acumuladoMesas[i][0]);
-			totalFaturado += acumuladoMesas[i][0];
-		}
-		
-		//Calculo da Média Faturada por Mesas
+		// Calculo da Média Faturada por Mesas
 		mediaMesas = totalFaturado / mesasAtendidas;
 		
 		// Print do total e das médias das mesas
@@ -341,6 +396,7 @@ clreol(37, 4);
 		
 		gotoxy(39,21);
 		printf("%.2f", mediaMesas);
+
 	}
 	
 	return 0;
