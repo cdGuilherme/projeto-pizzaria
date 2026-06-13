@@ -1,7 +1,4 @@
-
-// Nota: 9,0
-
-// Pizzaria 1.4.3
+// Pizzaria 5.0.0dev
 
 // Grupo 04:
 // Cesar Henrique;
@@ -225,7 +222,7 @@ clreol(37, 4);
 		acumuladoMesas[numMesa - 1][3] += totalRefri;
 		acumuladoMesas[numMesa - 1][4] += totalAgua;
 		acumuladoMesas[numMesa - 1][5] += totalCobertura;
-		acumuladoMesas[numMesa - 1][6] += qtdPessoas;
+		acumuladoMesas[numMesa - 1][6] += qtdPessoa;
 	 	
 	 	
 	 	
@@ -331,8 +328,8 @@ clreol(37, 4);
 			gotoxy(24,i + 8);
 			printf("%i", i + 1);
 			gotoxy(33,i + 8);
-			printf("%9.2f", acumuladoMesas[i]);
-			totalFaturado += acumuladoMesas[i];
+			printf("%9.2f", acumuladoMesas[i][0]);
+			totalFaturado += acumuladoMesas[i][0];
 		}
 		
 		//Calculo da Média Faturada por Mesas
