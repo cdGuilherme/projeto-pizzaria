@@ -1,4 +1,4 @@
-// Pizzaria 5.0.2
+// Pizzaria v5.0.2
 
 // Grupo 04:
 // Cesar Henrique;
